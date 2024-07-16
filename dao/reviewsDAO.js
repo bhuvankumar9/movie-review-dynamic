@@ -9,7 +9,7 @@ export default class ReviewsDAO {
     static async injectDB(conn) {
         if (reviews) {
             return;
-        }
+        }                                                       
         try {
             const db = await conn.db("reviews");
             reviews = db.collection("reviews");
@@ -17,7 +17,6 @@ export default class ReviewsDAO {
             console.error(`Unable to establish collection handles in ReviewsDAO: ${e}`);
         }
     }
-
     static async addReview(movieId, user, review) {
         try {
             const reviewDoc = {
@@ -31,7 +30,6 @@ export default class ReviewsDAO {
             return { error: e };
         }
     }
-
     static async getReview(reviewId) {
         try {
             return await reviews.findOne({ _id: ObjectId(reviewId) });
@@ -54,7 +52,6 @@ export default class ReviewsDAO {
             return { error: e };
         }
     }
-
     static async deleteReview(reviewId) {
         try {
             const deleteResponse = await reviews.deleteOne({
